@@ -276,12 +276,12 @@ const AllRecipe = () => {
             className="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 duration-300 my-5"
             key={recipe.key}
           >
-            <div className="bg-white w-[400px] h-[520px] border-2 rounded-lg p-3 flex flex-col justify-start gap-5 items-center hover:shadow-2xl">
+            <div className="bg-white w-[350px] h-[520px] border-2 rounded-lg p-3 flex flex-col justify-start gap-5 items-center hover:shadow-2xl">
               <div>
                 <img
                   src={recipe.recipeImage}
                   alt=""
-                  className="w-[400px] h-[250px] object-cover rounded-lg"
+                  className="w-[350px] h-[250px] object-cover rounded-lg"
                 />
               </div>
 
