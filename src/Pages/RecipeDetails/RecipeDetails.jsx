@@ -8,7 +8,9 @@ const RecipeDetails = () => {
   const { data: recipedetails = [] } = useQuery({
     queryKey: ["recipedetails"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/recipedetails/${id}`);
+      const res = await fetch(
+        `https://food-recipe-share-server.vercel.app/recipedetails/${id}`
+      );
       const data = await res.json();
       return data;
     },
@@ -25,13 +27,22 @@ const RecipeDetails = () => {
             title="youtube video"
           ></iframe>
           <div className="my-10 text-lg">
-          <p className="text-4xl font-bold text-black">{recipedetails.recipeName}</p>
-          <p className="font-semibold my-2">Total Watch: {recipedetails.watchCount}</p>
-          <p className="font-semibold my-2">Recipe Category: {recipedetails.category}</p>
-          <p className="font-semibold my-2">Dishes: {recipedetails.country}</p>
-          <p className="font-semibold my-2">Creator : {recipedetails.creatorEmail}</p>
-          <p>{recipedetails.recipeDetails}</p>
-
+            <p className="text-4xl font-bold text-black">
+              {recipedetails.recipeName}
+            </p>
+            <p className="font-semibold my-2">
+              Total Watch: {recipedetails.watchCount}
+            </p>
+            <p className="font-semibold my-2">
+              Recipe Category: {recipedetails.category}
+            </p>
+            <p className="font-semibold my-2">
+              Dishes: {recipedetails.country}
+            </p>
+            <p className="font-semibold my-2">
+              Creator : {recipedetails.creatorEmail}
+            </p>
+            <p>{recipedetails.recipeDetails}</p>
           </div>
         </div>
       </div>

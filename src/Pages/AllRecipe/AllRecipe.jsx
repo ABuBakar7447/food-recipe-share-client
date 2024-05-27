@@ -18,7 +18,9 @@ const AllRecipe = () => {
   const { data: allrecipe = [] } = useQuery({
     queryKey: ["allrecipe"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allrecipe");
+      const res = await fetch(
+        "https://food-recipe-share-server.vercel.app/allrecipe"
+      );
       const data = await res.json();
       return data;
     },
@@ -94,9 +96,12 @@ const AllRecipe = () => {
           };
 
           axios
-            .patch(`http://localhost:5000/recipedetails/${recipe._id}`, {
-              coindata: coinData,
-            })
+            .patch(
+              `https://food-recipe-share-server.vercel.app/recipedetails/${recipe._id}`,
+              {
+                coindata: coinData,
+              }
+            )
             .then((data) => {
               console.log(data);
               refetch();
@@ -167,7 +172,7 @@ const AllRecipe = () => {
   //         };
 
   //         axios
-  //           .patch(`http://localhost:5000/recipedetails/${recipe._id}`, {
+  //           .patch(`https://food-recipe-share-server.vercel.app/recipedetails/${recipe._id}`, {
   //             coindata: coinData,
   //           })
   //           .then((data) => {

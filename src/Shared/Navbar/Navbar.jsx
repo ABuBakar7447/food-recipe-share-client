@@ -5,7 +5,7 @@ import useUserData from "../../Hooks/useUserData";
 
 const Navbar = () => {
   const { user, googleSignIn, logout } = useContext(AuthContext);
-  const [userdetails] = useUserData()
+  const [userdetails] = useUserData();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,7 +27,7 @@ const Navbar = () => {
         coin: 50,
       };
       //   console.log(userdata);
-      fetch("http://localhost:5000/user", {
+      fetch("https://food-recipe-share-server.vercel.app/user", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -98,7 +98,6 @@ const Navbar = () => {
 
             {user?.email ? (
               <>
-                
                 <li>
                   <Link to="/addrecipe"> Add Recipe</Link>
                 </li>
@@ -106,7 +105,6 @@ const Navbar = () => {
                 <li>
                   <Link onClick={handleLogout}>Logout</Link>
                 </li>
-
               </>
             ) : (
               <li>
@@ -116,11 +114,25 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-        {userdetails[0]?.coin?<p className="mr-4 text-lg">${userdetails[0]?.coin}</p>:''}
-          
-          {userdetails[0]?.photourl?
-            <img src={userdetails[0]?.photourl} alt="user image" className="w-[40px] h-[40px] object-cover rounded-full" /> : <img src="https://i.ibb.co/fdhKfkS/images-removebg-preview.png" alt="" className="w-[40px] h-[40px] object-cover rounded-full"/> 
-        }
+          {userdetails[0]?.coin ? (
+            <p className="mr-4 text-lg">${userdetails[0]?.coin}</p>
+          ) : (
+            ""
+          )}
+
+          {userdetails[0]?.photourl ? (
+            <img
+              src={userdetails[0]?.photourl}
+              alt="user image"
+              className="w-[40px] h-[40px] object-cover rounded-full"
+            />
+          ) : (
+            <img
+              src="https://i.ibb.co/fdhKfkS/images-removebg-preview.png"
+              alt=""
+              className="w-[40px] h-[40px] object-cover rounded-full"
+            />
+          )}
         </div>
       </div>
     </div>
