@@ -7,7 +7,7 @@ import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 
 const AllRecipe = () => {
-  const { user } = useAuth();
+  const { user,loading } = useAuth();
   const [reaction, setReaction] = useState([]);
   const [filterValue, setFilterValue] = useState("");
 
@@ -15,6 +15,9 @@ const AllRecipe = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  if(loading){
+    <div>......loading, please wait</div>
+  }
   const { data: allrecipe = [] } = useQuery({
     queryKey: ["allrecipe"],
     queryFn: async () => {
@@ -131,72 +134,6 @@ const AllRecipe = () => {
     }
   };
 
-  //     Swal.fire({
-  //       title: 'Please login to order food',
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#3085d6',
-  //       cancelButtonColor: '#d33',
-  //       confirmButtonText: 'Login Now'
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         navigate('/', { state: { from: location } });
-  //       }
-  //     });
-  //     return;
-  //   }
-
-  //   console.log(userdetails[0].email, userdetails[0].coin);
-  //   const userpurchased = recipe.purchased_by.filter(
-  //     (user) => user === userdetails[0].email
-  //   );
-  //   console.log(userpurchased);
-
-  //   if (userdetails[0].email && userpurchased[0]) {
-  //     navigate(`details/${recipe._id}`, { state: { from: location } });
-  //   } else if (userdetails[0].coin >= 10) {
-  //     Swal.fire({
-  //       title: "Do you want to spend 10 coin to see the details page",
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       confirmButtonColor: "#3085d6",
-  //       cancelButtonColor: "#d33",
-  //       confirmButtonText: "OK, I Will",
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         const coinData = {
-  //           userEmail: userdetails[0].email,
-  //           userCoin: 10,
-  //           creatorEmail: recipe.creatorEmail,
-  //           creatorCoin: 1,
-  //         };
-
-  //         axios
-  //           .patch(`https://food-recipe-share-server.vercel.app/recipedetails/${recipe._id}`, {
-  //             coindata: coinData,
-  //           })
-  //           .then((data) => {
-  //             console.log(data);
-  //             refetch();
-  //             navigate(`details/${recipe._id}`, { state: { from: location } });
-  //           });
-  //       }
-  //     });
-  //   } else {
-  //     Swal.fire({
-  //       title: "You have not enough coin to buy this video. Wants to buy coin?",
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       confirmButtonColor: "#3085d6",
-  //       cancelButtonColor: "#d33",
-  //       confirmButtonText: "OK, buy coin",
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         navigate("/buycoin", { state: { from: location } });
-  //       }
-  //     });
-  //   }
-  // };
 
   const recipies = filterValue
     ? allrecipe.filter(
